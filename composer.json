@@ -1,35 +1,35 @@
 {
-    "name": "blomstra/fontawesome",
-    "description": "Upgrade Font Awesome on your forum to version 6 (Free or Pro)",
+    "name": "little100/fontawesome",
+    "description": "Upgrade Font Awesome on your forum to version 7 (Free or Pro)",
     "keywords": [
         "flarum"
     ],
     "type": "flarum-extension",
     "license": "MIT",
-    "homepage": "https://blomstra.net",
+    "homepage": "https://github.com/little100/flarum-ext-fontawesome",
     "support": {
-        "issues": "https://github.com/blomstra/flarum-ext-fontawesome/issues",
-        "source": "https://github.com/blomstra/flarum-ext-fontawesome",
-        "forum": "https://discuss.flarum.org/d/31219-blomstra-font-awesome-6"
+        "issues": "https://github.com/little100/flarum-ext-fontawesome/issues",
+        "source": "https://github.com/little100/flarum-ext-fontawesome",
+        "forum": "https://discuss.flarum.org/d/31219"
     },
     "require": {
         "flarum/core": "^1.2.0"
     },
     "authors": [
         {
-            "name": "Team Blomstra",
-            "email": "development@blomstra.net",
+            "name": "little100",
+            "email": "little100@example.com",
             "role": "Developer"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Blomstra\\FontAwesome\\": "src/"
+            "Little100\\FontAwesome\\": "src/"
         }
     },
     "extra": {
         "flarum-extension": {
-            "title": "Font Awesome 6",
+            "title": "Font Awesome 7",
             "category": "feature",
             "icon": {
                 "name": "fab fa-font-awesome-flag",

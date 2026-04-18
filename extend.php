@@ -1,60 +1,35 @@
 <?php
 
 /*
- * This file is part of blomstra/fontawesome.
+ * This file is part of little100/fontawesome.
  *
- *  Copyright (c) 2022 Blomstra Ltd.
+ *  Copyright (c) 2025 little100.
  *
  *  For the full copyright and license information, please view the LICENSE.md
  *  file that was distributed with this source code.
  *
  */
 
-namespace Blomstra\FontAwesome;
+namespace Little100\FontAwesome;
 
-use Blomstra\FontAwesome\Content\Frontend;
-use Blomstra\FontAwesome\Providers\FontAwesomeLessImports;
-use Blomstra\FontAwesome\Providers\FontAwesomePreloads;
+use Little100\FontAwesome\Content\Frontend;
+use Little100\FontAwesome\Providers\FontAwesomePreloads;
 use Flarum\Extend;
-use Illuminate\Contracts\Filesystem\Cloud;
-use Illuminate\Contracts\Filesystem\Factory;
 
 return [
     (new Extend\Frontend('forum'))
-        ->css(__DIR__.'/less/forum.less')
-        ->css(__DIR__.'/less/common.less')
         ->content(Frontend::class),
 
     (new Extend\Frontend('admin'))
         ->js(__DIR__.'/js/dist/admin.js')
-        ->css(__DIR__.'/less/admin.less')
-        ->css(__DIR__.'/less/common.less')
         ->content(Frontend::class),
 
     new Extend\Locales(__DIR__.'/locale'),
 
     (new Extend\ServiceProvider())
-        ->register(FontAwesomePreloads::class)
-        ->register(FontAwesomeLessImports::class),
+        ->register(FontAwesomePreloads::class),
 
     (new Extend\Settings())
-        ->default('blomstra-fontawesome.kitUrl', '')
-        ->default('blomstra-fontawesome.type', 'free'),
-
-    (new Extend\Theme())
-        ->addCustomLessFunction('blomstra-fontawesome-font-urls', function ($style) {
-            /**
-             * @var Cloud
-             */
-            $disk = resolve(Factory::class)->disk('flarum-assets');
-            $uri = $disk->url('extensions/blomstra-fontawesome/fontawesome-6-free/fa-'.$style);
-
-            if ($style === 'solid') {
-                $uri .= '-900';
-            } else {
-                $uri .= '-400';
-            }
-
-            return "url('$uri.woff2') format('woff2'), url('$uri.ttf') format('truetype')";
-        })
+        ->default('little100-fontawesome.kitUrl', '')
+        ->default('little100-fontawesome.type', 'free'),
 ];

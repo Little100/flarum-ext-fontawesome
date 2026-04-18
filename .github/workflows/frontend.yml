@@ -1,4 +1,4 @@
-name: FontAwesome 6 JS
+name: FontAwesome 7 JS
 
 on: [workflow_dispatch, push, pull_request]
 

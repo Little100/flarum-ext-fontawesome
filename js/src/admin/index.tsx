@@ -1,39 +1,65 @@
 import app from 'flarum/admin/app';
 import icon from 'flarum/common/helpers/icon';
 
-app.initializers.add('blomstra/fontawesome', () => {
+const testPanelStyle = `
+  .Little100FontAwesome-testPanel {
+    padding: 12px;
+    border-radius: 4px;
+    background: var(--control-bg);
+    color: var(--control-color);
+  }
+  .Little100FontAwesome-testPanel legend {
+    float: left;
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .Little100FontAwesome-testPanel legend + * {
+    clear: both;
+  }
+  .Little100FontAwesome-testPanelEntry {
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+`;
+
+app.initializers.add('little100/fontawesome', () => {
+  const styleEl = document.createElement('style');
+  styleEl.textContent = testPanelStyle;
+  document.head.appendChild(styleEl);
   app.extensionData
-    .for('blomstra-fontawesome')
+    .for('little100-fontawesome')
     .registerSetting({
       type: 'select',
-      setting: 'blomstra-fontawesome.type',
-      label: app.translator.trans('blomstra-fontawesome.admin.settings.type'),
+      setting: 'little100-fontawesome.type',
+      label: app.translator.trans('little100-fontawesome.admin.settings.type'),
       options: {
-        free: 'Font Awesome 6 Free',
-        // pro: 'Font Awesome 6 Pro',
-        kit: 'Font Awesome 6 Kit (Free/Pro)',
+        free: app.translator.trans('little100-fontawesome.admin.settings.type_free'),
+        kit: app.translator.trans('little100-fontawesome.admin.settings.type_kit'),
       },
     })
     .registerSetting({
       type: 'text',
-      setting: 'blomstra-fontawesome.kitUrl',
-      label: app.translator.trans('blomstra-fontawesome.admin.settings.kit_url'),
-      help: app.translator.trans('blomstra-fontawesome.admin.settings.kit_url_help'),
+      setting: 'little100-fontawesome.kitUrl',
+      label: app.translator.trans('little100-fontawesome.admin.settings.kit_url'),
+      help: app.translator.trans('little100-fontawesome.admin.settings.kit_url_help'),
     })
     .registerSetting(() => {
       return (
-        <fieldset class="Form-group BlomstraFontAwesome-testPanel">
-          <legend>{app.translator.trans('blomstra-fontawesome.admin.settings.test.heading')}</legend>
-          <p>{app.translator.trans('blomstra-fontawesome.admin.settings.test.desc')}</p>
+        <fieldset class="Form-group Little100FontAwesome-testPanel">
+          <legend>{app.translator.trans('little100-fontawesome.admin.settings.test.heading')}</legend>
+          <p>{app.translator.trans('little100-fontawesome.admin.settings.test.desc')}</p>
 
           {Object.entries({
             fa5_compat: 'fab fa-font-awesome-flag',
             fa6_free: 'fas fa-person-rays',
-            fa6_pro: 'fa-duotone fa-arrow-up-from-ground-water',
+            fa7_free: 'fa-brands fa-openai',
           }).map(([key, i]) => (
-            <div class="BlomstraFontAwesome-testPanelEntry">
+            <div class="Little100FontAwesome-testPanelEntry">
               {icon(`${i} fa-2x fa-fw`)}
-              <span>{app.translator.trans(`blomstra-fontawesome.admin.settings.test.${key}`)}</span>
+              <span>{app.translator.trans(`little100-fontawesome.admin.settings.test.${key}`)}</span>
             </div>
           ))}
         </fieldset>
